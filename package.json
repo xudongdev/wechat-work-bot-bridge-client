@@ -1,0 +1,136 @@
+{
+  "private": true,
+  "name": "wechat-work-bot-bridge-client",
+  "version": "0.0.1",
+  "dependencies": {
+    "@apollo/react-hooks": "^3.1.3",
+    "@craco/craco": "^5.6.4",
+    "@monaco-editor/react": "^3.1.2",
+    "@testing-library/jest-dom": "^5.3.0",
+    "@testing-library/react": "^10.0.2",
+    "@testing-library/user-event": "^10.0.1",
+    "antd": "^3.26.14",
+    "apollo-boost": "^0.4.7",
+    "babel-plugin-styled-components": "^1.10.7",
+    "copy-to-clipboard": "^3.3.1",
+    "dotenv": "^8.2.0",
+    "eslint-config-airbnb": "^18.1.0",
+    "eslint-config-prettier": "^6.10.1",
+    "eslint-plugin-react-hooks": "^3.0.0",
+    "eslint-plugin-simple-import-sort": "^5.0.2",
+    "graphql": "^14.6.0",
+    "husky": "^4.2.3",
+    "lint-staged": "^10.1.0",
+    "lodash": "^4.17.15",
+    "prettier": "^2.0.2",
+    "prop-types": "^15.7.2",
+    "react": "^16.13.1",
+    "react-dom": "^16.13.1",
+    "react-helmet": "^5.2.1",
+    "react-router": "^5.1.2",
+    "react-router-config": "^5.1.1",
+    "react-router-dom": "^5.1.2",
+    "react-scripts": "^3.4.1",
+    "rimraf": "^3.0.2",
+    "styled-components": "^5.0.1",
+    "stylelint": "^13.2.1",
+    "stylelint-config-standard": "^20.0.0",
+    "stylelint-order": "^4.0.0",
+    "stylelint-order-config-yandex": "^0.1.2",
+    "validator": "^13.0.0"
+  },
+  "scripts": {
+    "start": "SKIP_PREFLIGHT_CHECK=true craco start",
+    "build": "SKIP_PREFLIGHT_CHECK=true craco build",
+    "test": "SKIP_PREFLIGHT_CHECK=true craco test"
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "lint-staged"
+    }
+  },
+  "lint-staged": {
+    "*.{js,jsx,json,css,scss,md}": [
+      "prettier --write",
+      "git add"
+    ],
+    "*.{js,jsx}": [
+      "eslint --fix",
+      "git add"
+    ],
+    "*.{js,jsx,css,scss}": [
+      "stylelint --fix",
+      "git add"
+    ]
+  },
+  "babel": {
+    "plugins": [
+      [
+        "styled-components",
+        {
+          "ssr": true,
+          "displayName": true
+        }
+      ]
+    ]
+  },
+  "eslintConfig": {
+    "env": {
+      "browser": true,
+      "jest": true
+    },
+    "parser": "babel-eslint",
+    "extends": [
+      "airbnb",
+      "prettier",
+      "prettier/react"
+    ],
+    "plugins": [
+      "simple-import-sort",
+      "react-hooks"
+    ],
+    "rules": {
+      "react-hooks/rules-of-hooks": "error",
+      "react-hooks/exhaustive-deps": "warn",
+      "react/sort-prop-types": [
+        "error",
+        {
+          "callbacksLast": true
+        }
+      ],
+      "react/jsx-sort-props": [
+        "error",
+        {
+          "callbacksLast": true
+        }
+      ],
+      "react/forbid-prop-types": "off",
+      "simple-import-sort/sort": "error"
+    },
+    "settings": {
+      "import/resolver": {
+        "node": {
+          "moduleDirectory": [
+            "node_modules",
+            "src"
+          ]
+        }
+      }
+    }
+  },
+  "stylelint": {
+    "extends": [
+      "stylelint-config-standard",
+      "stylelint-order-config-yandex"
+    ],
+    "plugins": [
+      "stylelint-order"
+    ]
+  },
+  "browserslist": [
+    "defaults"
+  ],
+  "devDependencies": {
+    "webpack": "^4.42.1"
+  }
+}
