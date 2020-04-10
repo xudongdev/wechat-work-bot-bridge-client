@@ -9,6 +9,8 @@ import Helmet from "react-helmet";
 
 import EditWebhookDrawer from "./components/EditWebhookDrawer";
 
+const { SERVER_URL } = process.env;
+
 function Webhooks() {
   const [open, setOpen] = useState(false);
   const [webhook, setWebhook] = useState(null);
@@ -41,19 +43,19 @@ function Webhooks() {
             dataIndex: "name",
             key: "name",
             width: 200,
-            render: name => <Ellipsis>{name}</Ellipsis>
+            render: (name) => <Ellipsis>{name}</Ellipsis>,
           },
           {
             title: "微信群机器人",
             dataIndex: "bots",
             key: "bots",
-            render: bots => (
+            render: (bots) => (
               <span>
-                {bots.map(bot => (
+                {bots.map((bot) => (
                   <Tag key={bot.id}>{bot.name}</Tag>
                 ))}
               </span>
-            )
+            ),
           },
           {
             title: "操作",
@@ -65,9 +67,7 @@ function Webhooks() {
                 <Button
                   type="link"
                   onClick={() => {
-                    copy(
-                      `${window.location.origin}/webhooks/${record.id}/send`
-                    );
+                    copy(`${SERVER_URL}/webhooks/${record.id}/send`);
                     message.info("已复制 Webhook 地址到剪切板");
                   }}
                 >
@@ -98,8 +98,8 @@ function Webhooks() {
                   <Button type="link">删除</Button>
                 </Popconfirm>
               </span>
-            )
-          }
+            ),
+          },
         ]}
         dataSource={webhooks}
         loading={loading || removeWebhookLoading}
